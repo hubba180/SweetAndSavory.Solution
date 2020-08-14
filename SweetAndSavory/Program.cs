@@ -10,7 +10,7 @@ namespace SweetAndSavory
       var host = new WebHostBuilder()
         .UseKestrel()
         .UseContentRoot(Directory.GetCurrentDirectory())
-        .UserIISIntegration()
+        .UseIISIntegration()
         .UseStartup<Startup>()
         .Build();
 
