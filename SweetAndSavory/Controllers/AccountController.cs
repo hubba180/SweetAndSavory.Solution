@@ -24,8 +24,10 @@ namespace SweetAndSavory.Controllers
       _userManager = userManager;
       _signInManager = signInManager;
     }
-    public ActionResult Index()
+    public async Task<ActionResult> Index()
     {
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var currentUser = await _userManager.FindByIdAsync(userId);
       return View();
     }
     public ActionResult Register()
@@ -46,6 +48,24 @@ namespace SweetAndSavory.Controllers
       {
         return View();
       }
+    }
+    public ActionResult Login()
+    {
+        return View();
+    }
+
+    [HttpPost]
+    public async Task<ActionResult> Login(LoginViewModel model)
+    {
+        Microsoft.AspNetCore.Identity.SignInResult result = await _signInManager.PasswordSignInAsync(model.Email, model.Password, isPersistent: true, lockoutOnFailure: false);
+        if (result.Succeeded)
+        {
+            return RedirectToAction("Index");
+        }
+        else
+        {
+            return View();
+        }
     }
   }
 }

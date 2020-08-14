@@ -11,7 +11,6 @@ namespace SweetAndSavory.ViewModels
     public string Email { get; set; }
 
     [Required]
-    [NickName]
     public string NickName { get; set; }
 
     [Required]
