@@ -1,15 +1,9 @@
-using Microsoft.AspNetCore.Authorization;
-using Microsoft.AspNetCore.Identity;
 using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Mvc.Rendering;
-using Microsoft.EntityFrameworkCore;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Linq;
-using System.Security.Claims;
-using System.Threading.Tasks;
+using Microsoft.AspNetCore.Identity;
 using SweetAndSavory.Models;
+using System.Threading.Tasks;
 using SweetAndSavory.ViewModels;
+
 
 namespace SweetAndSavory.Controllers
 {
@@ -24,16 +18,15 @@ namespace SweetAndSavory.Controllers
       _userManager = userManager;
       _signInManager = signInManager;
     }
-    public async Task<ActionResult> Index()
+    public  ActionResult Index()
     {
-      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-      var currentUser = await _userManager.FindByIdAsync(userId);
       return View();
     }
     public ActionResult Register()
     {
       return View();
     }
+
     [HttpPost]
     public async Task<ActionResult> Register(RegisterViewModel newUser)
     {
@@ -42,6 +35,7 @@ namespace SweetAndSavory.Controllers
 
       if (result.Succeeded)
       {
+        Microsoft.AspNetCore.Identity.SignInResult RegisterSignIn = await _signInManager.PasswordSignInAsync(newUser.Email, newUser.Password, isPersistent: true, lockoutOnFailure: false);
         return RedirectToAction("Index");
       }
       else
@@ -66,6 +60,12 @@ namespace SweetAndSavory.Controllers
         {
             return View();
         }
+    }
+    [HttpPost]
+    public async Task<ActionResult> LogOff()
+    {
+      await _signInManager.SignOutAsync();
+      return RedirectToAction("Index");
     }
   }
 }

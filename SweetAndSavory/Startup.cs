@@ -50,6 +50,8 @@ namespace SweetAndSavory
 
       app.UseDeveloperExceptionPage();
 
+      app.UseAuthentication();
+
       app.UseMvc(routes =>
       {
         routes.MapRoute(
