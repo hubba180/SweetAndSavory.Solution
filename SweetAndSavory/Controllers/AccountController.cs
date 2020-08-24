@@ -30,9 +30,11 @@ namespace SweetAndSavory.Controllers
       _userManager = userManager;
       _signInManager = signInManager;
     }
-    public  async Task<ActionResult> Index()
+    public  ActionResult Index()
     {
-      return View();
+      var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+      var MyTreats = _db.Treats.Where(a => a.User.Id == userId).ToList();
+      return View(MyTreats);
     }
     public ActionResult Register()
     {
