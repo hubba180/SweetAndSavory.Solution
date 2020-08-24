@@ -7,11 +7,11 @@ using Microsoft.AspNetCore.Mvc.Rendering;
 
 namespace SweetAndSavory.Controllers
 {
-  public class BooksController : Controller
+  public class FlavorController : Controller
   {
     private readonly SweetAndSavoryContext _db;
 
-    public BooksController(SweetAndSavoryContext db)
+    public FlavorController(SweetAndSavoryContext db)
     {
       _db = db;
     }

@@ -1,8 +1,20 @@
-using Microsoft.AspNetCore.Mvc;
-using Microsoft.AspNetCore.Identity;
+// using Microsoft.AspNetCore.Mvc;
+// using Microsoft.AspNetCore.Identity;
 using SweetAndSavory.Models;
-using System.Threading.Tasks;
+// using System.Threading.Tasks;
 using SweetAndSavory.ViewModels;
+// using System.Security.Claims;
+
+  
+using Microsoft.AspNetCore.Mvc;
+using System.Collections.Generic;
+using System.Linq;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.AspNetCore.Mvc.Rendering;
+using Microsoft.AspNetCore.Authorization;
+using Microsoft.AspNetCore.Identity;
+using System.Threading.Tasks;
+using System.Security.Claims;
 
 
 namespace SweetAndSavory.Controllers
@@ -18,10 +30,14 @@ namespace SweetAndSavory.Controllers
       _userManager = userManager;
       _signInManager = signInManager;
     }
-    public  ActionResult Index()
-    {
-      return View();
-    }
+    // public  async Task<ActionResult> Index()
+    // {
+    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
+    //   var currentUser = await _userManager.FindByIdAsync(userId);
+    //   ViewBag.UserFlavors = _db.Flavors.Where(entry => entry.FlavorId == );
+    //   var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id);
+    //   return View(userTreats);
+    // }
     public ActionResult Register()
     {
       return View();

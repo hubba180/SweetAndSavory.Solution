@@ -2,15 +2,17 @@
 using System;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.EntityFrameworkCore.Infrastructure;
+using Microsoft.EntityFrameworkCore.Migrations;
 using Microsoft.EntityFrameworkCore.Storage.ValueConversion;
 using SweetAndSavory.Models;
 
 namespace SweetAndSavory.Migrations
 {
     [DbContext(typeof(SweetAndSavoryContext))]
-    partial class SweetAndSavoryContextModelSnapshot : ModelSnapshot
+    [Migration("20200817001719_AppUserFlavor")]
+    partial class AppUserFlavor
     {
-        protected override void BuildModel(ModelBuilder modelBuilder)
+        protected override void BuildTargetModel(ModelBuilder modelBuilder)
         {
 #pragma warning disable 612, 618
             modelBuilder
@@ -176,6 +178,28 @@ namespace SweetAndSavory.Migrations
                     b.ToTable("AspNetUsers");
                 });
 
+            modelBuilder.Entity("SweetAndSavory.Models.ApplicationUserFlavor", b =>
+                {
+                    b.Property<int>("ApplicationUserFlavorId")
+                        .ValueGeneratedOnAdd();
+
+                    b.Property<string>("ApplicationUserId");
+
+                    b.Property<int>("FlavorId");
+
+                    b.Property<int?>("TreatId");
+
+                    b.HasKey("ApplicationUserFlavorId");
+
+                    b.HasIndex("ApplicationUserId");
+
+                    b.HasIndex("FlavorId");
+
+                    b.HasIndex("TreatId");
+
+                    b.ToTable("ApplicationUserFlavor");
+                });
+
             modelBuilder.Entity("SweetAndSavory.Models.Flavor", b =>
                 {
                     b.Property<int>("FlavorId")
@@ -267,6 +291,22 @@ namespace SweetAndSavory.Migrations
                         .WithMany()
                         .HasForeignKey("UserId")
                         .OnDelete(DeleteBehavior.Cascade);
+                });
+
+            modelBuilder.Entity("SweetAndSavory.Models.ApplicationUserFlavor", b =>
+                {
+                    b.HasOne("SweetAndSavory.Models.ApplicationUser")
+                        .WithMany("Flavors")
+                        .HasForeignKey("ApplicationUserId");
+
+                    b.HasOne("SweetAndSavory.Models.Flavor", "Flavor")
+                        .WithMany("ApplicationUsers")
+                        .HasForeignKey("FlavorId")
+                        .OnDelete(DeleteBehavior.Cascade);
+
+                    b.HasOne("SweetAndSavory.Models.Treat", "Treat")
+                        .WithMany()
+                        .HasForeignKey("TreatId");
                 });
 
             modelBuilder.Entity("SweetAndSavory.Models.FlavorTreat", b =>
