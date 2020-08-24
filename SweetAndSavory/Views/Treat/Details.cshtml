@@ -4,9 +4,9 @@
 <hr />
 <h3>@Html.DisplayNameFor(model => model.Name): @Html.DisplayFor(model => model.Name)</h3>
 
-@if (@Model.Treats.Count == 0)
+@if (@Model.Flavors.Count == 0)
 {
-  <p>This treat does not contain any treats</p>
+  <p>This treat does not contain any flavors</p>
 }
 else
 {
@@ -19,7 +19,7 @@ else
   </ul>
 }
 
-<p>@Html.ActionLink("Home", "Index", "Home")</p>
+<p>@Html.ActionLink("Home", "Index", "Account")</p>
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Edit treat", "Edit", new { id = Model.TreatId })</p>
 <p>@Html.ActionLink("Delete Recipe", "Delete", new { id = Model.TreatId })</p>
