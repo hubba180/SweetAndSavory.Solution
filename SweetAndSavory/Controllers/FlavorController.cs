@@ -1,18 +1,25 @@
 using Microsoft.AspNetCore.Mvc;
+using Microsoft.AspNetCore.Identity;
 using SweetAndSavory.Models;
 using System.Collections.Generic;
 using System.Linq;
 using Microsoft.EntityFrameworkCore;
 using Microsoft.AspNetCore.Mvc.Rendering;
+using System.Threading.Tasks;
+using SweetAndSavory.ViewModels;
 
 namespace SweetAndSavory.Controllers
 {
   public class FlavorController : Controller
   {
     private readonly SweetAndSavoryContext _db;
+    private readonly UserManager<ApplicationUser> _userManager;
+    private readonly SignInManager<ApplicationUser> _signInManager;
 
-    public FlavorController(SweetAndSavoryContext db)
+    public FlavorController(UserManager<ApplicationUser> userManager, SignInManager<ApplicationUser> signInManager, SweetAndSavoryContext db)
     {
+      _userManager = userManager;
+      _signInManager = signInManager;
       _db = db;
     }
 

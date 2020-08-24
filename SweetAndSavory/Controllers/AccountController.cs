@@ -30,14 +30,10 @@ namespace SweetAndSavory.Controllers
       _userManager = userManager;
       _signInManager = signInManager;
     }
-    // public  async Task<ActionResult> Index()
-    // {
-    //   var userId = this.User.FindFirst(ClaimTypes.NameIdentifier)?.Value;
-    //   var currentUser = await _userManager.FindByIdAsync(userId);
-    //   ViewBag.UserFlavors = _db.Flavors.Where(entry => entry.FlavorId == );
-    //   var userTreats = _db.Treats.Where(entry => entry.User.Id == currentUser.Id);
-    //   return View(userTreats);
-    // }
+    public  async Task<ActionResult> Index()
+    {
+      return View();
+    }
     public ActionResult Register()
     {
       return View();
