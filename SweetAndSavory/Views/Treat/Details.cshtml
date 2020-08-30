@@ -14,12 +14,11 @@ else
   <ul>
   @foreach(var join in Model.Flavors)
   {
-    <li>@join.Treat.Name</li>
+    <li>@Html.ActionLink($"{@join.Flavor.Name}", "Details", "Flavor", new { id = join.Flavor.FlavorId })</li>
   }
   </ul>
 }
-
 <p>@Html.ActionLink("Home", "Index", "Account")</p>
 <p>@Html.ActionLink("Back to list", "Index")</p>
 <p>@Html.ActionLink("Edit treat", "Edit", new { id = Model.TreatId })</p>
-<p>@Html.ActionLink("Delete Recipe", "Delete", new { id = Model.TreatId })</p>
+<p>@Html.ActionLink("Delete this treat", "Delete", new { id = Model.TreatId })</p>
