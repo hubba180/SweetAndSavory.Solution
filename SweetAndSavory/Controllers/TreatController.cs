@@ -31,7 +31,7 @@ namespace SweetAndSavory.Controllers
     }
     public ActionResult Create()
     {
-      ViewBag.TreatId = new SelectList(_db.Flavors, "TreatId", "Name");
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View();
     }
 
@@ -63,7 +63,7 @@ namespace SweetAndSavory.Controllers
     public ActionResult Edit(int id)
     {
       var thisTreat = _db.Treats.FirstOrDefault(treat => treat.TreatId == id);
-      ViewBag.TreatId = new SelectList(_db.Flavors, "FlavorId", "Name");
+      ViewBag.FlavorId = new SelectList(_db.Flavors, "FlavorId", "Name");
       return View(thisTreat);
     }
 
